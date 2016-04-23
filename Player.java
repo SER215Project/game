@@ -1,8 +1,8 @@
 import java.util.Scanner;
 public class Player {
-	private int chips = 21;
-	private char symbol;
-	private boolean isWinner = false;
+	protected int chips = 21;
+	protected char symbol;
+	protected boolean isWinner = false;
 	public Player(char symbol){
 		this.symbol = symbol;
 	}
@@ -58,7 +58,7 @@ public class Player {
 		checkWinner(column,row, board);
 		return board;
 	}
-	private void checkWinner(final int x, final int y, Slot[][] board){ //This is where the program will scan the chips to find a 4-in-a-row pattern
+	protected void checkWinner(final int x, final int y, Slot[][] board){ //This is where the program will scan the chips to find a 4-in-a-row pattern
 		boolean[] chipChain = {false, false, false, false}; // chipChain[3] == true is win scenario
 // Should have 13 checks total
 		
@@ -164,7 +164,7 @@ public class Player {
 					}
 				}
 			}	
-			if(((x>1)&&(x<6))&&((y<1)&&(y<5))) { // Check 11: diagonal down left offset
+			if(((x>1)&&(x<6))&&((y>1)&&(y<5))) { // Check 11: diagonal down left offset
 				for (int i = 0; i<4; i++) { // Checks for 4 in a diagonal down left offset pattern
 					if (board[x-i+1][y-i+1].getStatus()==this.symbol){
 						chipChain[i] = true;
@@ -204,7 +204,7 @@ public class Player {
 		
 		
 	}
-	public int chipsRemaining() { // returns remaining chips
+	protected int chipsRemaining() { // returns remaining chips
 		return this.chips;
 	}
 	public boolean isWinner() { // returns isWInner
